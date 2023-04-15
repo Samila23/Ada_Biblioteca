@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ada.livro.dtos.EstoqueDto;
 import com.ada.livro.model.Livro;
 import com.ada.livro.repositories.LivroRepository;
 
@@ -37,24 +38,23 @@ public class LivroService {
 		}
 	}
 	
-	public Livro updateEstoque(int id, int quantidade, int tipoTransacao) { 
-		Livro livro = new Livro();
+	public EstoqueDto updateEstoque(int id, int tipoTransacao, Livro livro) { 
+
 		Optional<Livro> optional = livroRepository.findById(id);
 		if (optional.isPresent() == true){
 			Livro livroBD = optional.get();
 			if(tipoTransacao == 1) {
 				//Devolucao
-				livroBD.setQuantidade(livro.getQuantidade() + quantidade);
+				livroBD.setQuantidade(livroBD.getQuantidade() + livro.getQuantidade());
 			}
 			else {
 				//Emprestimo
-				livroBD.setQuantidade(livro.getQuantidade() - quantidade);
+				livroBD.setQuantidade(livroBD.getQuantidade() - livro.getQuantidade());
 			}
-			livroBD.setQuantidade(livro.getQuantidade());
-			return livroRepository.save(livroBD); 
+			return livroRepository.save(livroBD).toDTOEstoque(); 
 		}
 		else {
-			return new Livro();
+			return new Livro().toDTOEstoque();
 		}
 	}
 	
