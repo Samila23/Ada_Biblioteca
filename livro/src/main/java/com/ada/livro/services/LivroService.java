@@ -37,10 +37,19 @@ public class LivroService {
 		}
 	}
 	
-	public Livro updateEstoque(int id, Livro livro) {
+	public Livro updateEstoque(int id, int quantidade, int tipoTransacao) { 
+		Livro livro = new Livro();
 		Optional<Livro> optional = livroRepository.findById(id);
-		if (optional.isPresent() == true){ 
+		if (optional.isPresent() == true){
 			Livro livroBD = optional.get();
+			if(tipoTransacao == 1) {
+				//Devolucao
+				livroBD.setQuantidade(livro.getQuantidade() + quantidade);
+			}
+			else {
+				//Emprestimo
+				livroBD.setQuantidade(livro.getQuantidade() - quantidade);
+			}
 			livroBD.setQuantidade(livro.getQuantidade());
 			return livroRepository.save(livroBD); 
 		}
