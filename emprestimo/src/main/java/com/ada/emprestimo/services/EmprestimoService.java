@@ -18,10 +18,14 @@ public class EmprestimoService {
 	@Autowired
 	ClienteService clienteService;
 	
+	@Autowired
+	LivroService livroService;
+	
 	public EmprestimoDtoCadastro save(Emprestimo emprestimo) {
 		//emprestimo.getCliente().getEmprestimo();
 		clienteService.getOne(101);
-		
+		livroService.getOne(101);
+
 		return emprestimoRepository.save(emprestimo).toEmprestimoDtoCadastro();
 	}
 	

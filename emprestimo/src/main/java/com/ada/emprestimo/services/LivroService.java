@@ -12,26 +12,28 @@ public class LivroService {
 	@Autowired
 	LivroRepository livroRepository;
 	
-	public Livro[] retornaDadosLivro(int idLivro) {
-		String url = "http://localhost:8080";
+	public Livro retornaDadosLivro(int idLivro) {
+		String url = "http://localhost:8090";
 		String uri = "livros/{id}";
 		
-		Livro[] dadosLivro = WebClient
+		Livro dadosLivro = WebClient
                 .create(url)
                 .get()
                 .uri(uri, idLivro)
                 .retrieve()
-                .bodyToMono(Livro[].class).block();
-		
+                .bodyToMono(Livro.class).block();
+		save(dadosLivro);
 		return dadosLivro;
 	}
 	
 	public Livro getOne(int id) {
+		retornaDadosLivro(id);
 		return livroRepository.findById(id).orElse(new Livro());
 	}
 	
-	public Livro save(Livro livro) {
-		return livroRepository.save(livro);
+	public Livro save(Livro dadosLivro) {
+		System.out.println(dadosLivro);
+		return livroRepository.save(dadosLivro);
 	}
 	
 }
