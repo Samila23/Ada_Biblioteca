@@ -44,8 +44,8 @@ Projeto padronizado de acordo com arquivo ``./resources/swagger.yml``
 - API: /Emprestimo
 - End Point URL Path:  /emprestimo
 - Method: POST
-- Objetivo: Cadastrar todas as informações necessárias para identificação de um cliente e livro, para processo de cadastro emprestimo.
-- Descrição: Este método é responsável por cadastrar um emprestimo de livro.
+- Objetivo: Cadastrar todas as informações necessárias para identificação de um clienteDto e livroDto, para processo de cadastro emprestimo.
+- Descrição: Este método é responsável por cadastrar um emprestimo de livroDto.
 
 1.1 - JSON Request de exemplo:
 ```
@@ -70,13 +70,13 @@ Projeto padronizado de acordo com arquivo ``./resources/swagger.yml``
         "protocolo": "01234"
     }
 ```
-2 – Listar livros do cliente
+2 – Listar livros do clienteDto
 
 - API: /emprestimo/
-- End Point URL Path:  /emprestimo/{idCliente}
+- End Point URL Path:  /emprestimos/{idCliente}
 - Method: GET
-- Objetivo: retornar lista com todas as informações de todos os livros que o cliente possui.
-- Descrição: Este método é responsável por listar todos os ivros que o cliente possui.
+- Objetivo: retornar lista com todas as informações de todos os livros que o clienteDto possui.
+- Descrição: Este método é responsável por listar todos os ivros que o clienteDto possui.
 
 PathParams: idCliente (idCliente): path param (idCliente) value=1</br>
 
@@ -120,13 +120,13 @@ PathParams: idCliente (idCliente): path param (idCliente) value=1</br>
     ]
 }
 ```
-3 – Devolução emprestimo do cliente
+3 – Devolução emprestimo do clienteDto
 
 - API: /Emprestimo
 - End Point URL Path:  /emprestimo/devolucao
 - Method: PUT
 - Objetivo: deletar todas as informações necessárias de um id_livro que esteja vinculado a um "X" = "id_cliente" no momento da devolucao.
-- Descrição: Este método é responsável por deletar um emprestimo de livro.
+- Descrição: Este método é responsável por deletar um emprestimo de livroDto.
 
 3.1 - JSON Request de exemplo:
 ```
@@ -239,13 +239,13 @@ PathParams: idCliente (idCliente): path param (idCliente) value=1</br>
 
 
 ### Avaliar se há necessidade deste recurso.
-6 - Listar todos os livros pendentes de devolução de um cliente
+6 - Listar todos os livros pendentes de devolução de um clienteDto
 
 - API: /emprestimo
 - End Point URL Path:  emprestimo/{id_cliente}
 - Method: GET
 - Objetivo: Listar todos os livros ao qual a data de devolução seja => que hoje de um cleinte especifico.
-- Descrição: Este método é responsável listar todos os livros que esteja com a data de devolução vencida de um cliente.
+- Descrição: Este método é responsável listar todos os livros que esteja com a data de devolução vencida de um clienteDto.
 
 PathParams: cliente_Id (cliente_Id): path param (cliente_Id) value=1
 ```
